@@ -1,4 +1,9 @@
 QRServer::Application.routes.draw do
+  
+  
+  get "customers/create"
+  get "customers/index"
+  resources :customers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

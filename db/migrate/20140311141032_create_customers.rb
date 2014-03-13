@@ -1,7 +1,7 @@
 class CreateCustomers < ActiveRecord::Migration
   def change
     create_table :customers do |t|
-      t.string :id
+      t.string :wetchatID
       t.string :name
 
       t.timestamps
