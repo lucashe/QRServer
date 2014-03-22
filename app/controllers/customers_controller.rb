@@ -1,7 +1,6 @@
 
 
 class CustomersController < ApplicationController
-  protect_from_forgery with: :null_session
 
   def index
     @cust = Customer.find(:all)
