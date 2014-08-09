@@ -1,5 +1,10 @@
 QRServer::Application.routes.draw do
 
+  resources :merchants
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   devise_for :users
 
   namespace :api do
@@ -12,7 +17,6 @@ QRServer::Application.routes.draw do
     end
   end
 
-  
   #devise_scope :user do
   #  root to: "devise/sessions#new"
   #end

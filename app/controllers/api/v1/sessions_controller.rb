@@ -8,7 +8,6 @@ class Api::V1::SessionsController < Devise::SessionsController
   #include Devise::Controllers::Helpers
 
   respond_to :json
-  
   def create
 
     #build_resource
@@ -28,12 +27,12 @@ class Api::V1::SessionsController < Devise::SessionsController
   def destroy
 
     resource = User.find_for_database_authentication(:authentication_token=>params[:user_token])
-    sign_out resource
-    
-    #Expire token 
+    sign_out :user, resource
+
+    #Expire token
     resource.reset_authentication_token!
     resource.save
-  
+
     render :status => 200, :json => {:success => true, :message => "Log out successfully"}
   end
 

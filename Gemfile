@@ -34,6 +34,10 @@ end
 
 gem 'devise'
 gem "twitter-bootstrap-rails", "~> 2.2.8"
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'carrierwave'
+
+#gem "meta_search"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
