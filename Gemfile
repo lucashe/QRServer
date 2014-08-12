@@ -39,6 +39,10 @@ gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
 
+gem 'rails_12factor', group: :production
+
+
+
 #gem "meta_search"
 
 # Use ActiveModel has_secure_password
