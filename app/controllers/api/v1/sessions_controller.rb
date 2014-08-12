@@ -4,7 +4,7 @@ class Api::V1::SessionsController < Devise::SessionsController
   before_filter :ensure_params_exist
 
   #before_filter :validate_auth_token, :except => [:create, :destroy]
-  include ApiHelper
+  #include ApiHelper
   #include Devise::Controllers::Helpers
 
   respond_to :json
@@ -16,8 +16,12 @@ class Api::V1::SessionsController < Devise::SessionsController
 
     if resource.valid_password?(params[:user][:password])
       sign_in :user, resource
-      render :json => {:success => true, :auth_token => resource.authentication_token,:email => resource.email,
-        :message => "Log in successfully"}
+
+      render :status => 200,
+           :json => { :success => true,
+                      :info => "Logged in successfully",
+                      :data => { :user => resource,
+                                 :auth_token => current_user.authentication_token } }
     return
     end
 
@@ -26,14 +30,17 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def destroy
 
-    resource = User.find_for_database_authentication(:authentication_token=>params[:user_token])
-    sign_out :user, resource
+    resource = User.find_for_database_authentication(:authentication_token=>params[:user][:auth_token])
+    sign_out resource
 
     #Expire token
     resource.reset_authentication_token!
     resource.save
 
-    render :status => 200, :json => {:success => true, :message => "Log out successfully"}
+    render :status => 200,
+           :json => { :success => true,
+                :info => "Logged out successfully",
+                :data => {} }
   end
 
   protected
@@ -45,11 +52,17 @@ class Api::V1::SessionsController < Devise::SessionsController
     #puts req["user"]
 
     return unless params[:user].blank?
-    render :json => {:success => false, :message => "Missing credentials"}, :status => 422
+    render :status => 422,
+           :json => {:success => false,
+                     :info => "Missing credentials" ,
+                     :data => {}}
   end
 
   def failure
-    render json: { :success => false, :message => "Invalid log in" }, :status => :unauthorized
+    render :status => :unauthorized,
+            :json=> {:success => false,
+                     :info => "Invalid credentials",
+                     :data => {} }
   end
 
 end

@@ -14,6 +14,7 @@ QRServer::Application.routes.draw do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
+
     end
   end
 
