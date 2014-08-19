@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    @cust = Customer.find(:all)
+    @cust = Customer.all
 
     respond_to do |format|
       format.html

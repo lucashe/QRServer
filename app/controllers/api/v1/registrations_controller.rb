@@ -1,7 +1,6 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
 
-  skip_before_filter :authenticate_user_from_token!,
-  :if => Proc.new { |c| c.request.format == 'application/json' }
+  skip_before_filter :authenticate_user_from_header_token!, :only => [:create]
 
   respond_to :json
   def create

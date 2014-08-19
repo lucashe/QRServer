@@ -1,7 +1,7 @@
 class Api::V1::SessionsController < Devise::SessionsController
 
-  skip_before_filter :authenticate_user_from_token!, :only => [:create]
-  before_filter :ensure_params_exist
+  skip_before_filter :authenticate_user_from_header_token!, :only => [:create]
+  before_filter :ensure_params_exist, :only => [:create]
 
   #before_filter :validate_auth_token, :except => [:create, :destroy]
   #include ApiHelper
@@ -30,7 +30,7 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def destroy
 
-    resource = User.find_for_database_authentication(:authentication_token=>params[:user][:auth_token])
+    resource = User.find_for_database_authentication(:authentication_token=>params[:header_token])
     sign_out resource
 
     #Expire token

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808124507) do
+ActiveRecord::Schema.define(version: 20140817142531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20140808124507) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "card_templates", force: true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.string   "frontImageURL"
+    t.string   "backImageURL"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cards", force: true do |t|
+    t.integer  "user_id"
+    t.string   "number"
+    t.string   "barCode"
+    t.string   "QRCode"
+    t.date     "expiryDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_template_id"
+  end
 
   create_table "customers", force: true do |t|
     t.string   "wetchatID"

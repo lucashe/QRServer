@@ -1,7 +1,5 @@
 QRServer::Application.routes.draw do
 
-  resources :merchants
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -10,17 +8,20 @@ QRServer::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_scope :user do
+
         post 'registrations' => 'registrations#create', :as => 'register'
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
+
       end
+
+      resources :merchants
+      resources :card_templates
+      resources :card
+    #get 'merchants' => 'merchants#index'
 
     end
   end
-
-  #devise_scope :user do
-  #  root to: "devise/sessions#new"
-  #end
 
   get "customers/create"
   get "customers/index"
