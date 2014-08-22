@@ -38,9 +38,9 @@ class Api::V1::SessionsController < Devise::SessionsController
     resource.save
 
     render :status => 200,
-           :json => { :success => true,
-                :info => "Logged out successfully",
-                :data => {} }
+           :json => {:success => true,
+                     :info => "Logged out successfully",
+                     :data => {}}
   end
 
   protected
