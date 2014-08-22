@@ -65,4 +65,8 @@ class Api::V1::SessionsController < Devise::SessionsController
                      :data => {} }
   end
 
+  def verify_signed_out_user
+    super unless request.format == 'application/json'
+  end
+
 end
