@@ -18,9 +18,9 @@ class Api::V1::SessionsController < Devise::SessionsController
       sign_in :user, resource
 
       render :status => 200,
-           :json => { :success => true,
-                      :info => "Logged in successfully",
-                      :data => { :user => resource,
+             :json => {:success => true,
+                       :info => "Logged in successfully",
+                       :data => {:user => resource,
                                  :auth_token => current_user.authentication_token } }
     return
     end
@@ -54,7 +54,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     return unless params[:user].blank?
     render :status => 422,
            :json => {:success => false,
-                     :info => "Missing credentials" ,
+                     :info => "Missing credentials",
                      :data => {}}
   end
 

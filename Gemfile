@@ -38,6 +38,7 @@ gem 'devise'
 gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'carrierwave'
+gem "fog", "~> 1.3.1"
 
 gem 'rails_12factor', group: :production
 
