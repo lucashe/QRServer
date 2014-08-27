@@ -14,7 +14,7 @@ class Api::V1::CardsController < ApplicationController
 
   def create
 
-    @card = Card.new(params[:card])
+    @card = Card.new(card_params)
 
     respond_to do |format|
       if @card.save
@@ -24,6 +24,10 @@ class Api::V1::CardsController < ApplicationController
       end
     end
 
+  end
+
+  def card_params
+    params.require(:card).permit(:card_template_id)
   end
 
 end
