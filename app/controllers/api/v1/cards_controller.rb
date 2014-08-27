@@ -16,12 +16,10 @@ class Api::V1::CardsController < ApplicationController
 
     @card = Card.new(card_params)
 
-    respond_to do |format|
-      if @card.save
-        render :json => @card.to_json(:include => {:card_template => { only: [:title,:desc,:frontImageURL, :backImageURL]}}),status: :created
-      else
-        render json: @card.errors, status: :unprocessable_entity
-      end
+    if @card.save
+      render :json => @card.to_json(:include => {:card_template => { only: [:title,:desc,:frontImageURL, :backImageURL]}}),status: :created
+    else
+      render json: @card.errors, status: :unprocessable_entity
     end
 
   end
