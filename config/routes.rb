@@ -17,7 +17,7 @@ QRServer::Application.routes.draw do
 
       resources :merchants
       resources :card_templates
-      resources :card
+      resources :cards
     #get 'merchants' => 'merchants#index'
 
     end
