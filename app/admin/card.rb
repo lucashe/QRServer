@@ -2,11 +2,16 @@ ActiveAdmin.register Card do
 
   permit_params :user_id,:card_template_id,:number
 
-  # index do
-    # column :user_id
-    # column :card_template_id
-    # column :number
-  # end
+  index do
+    selectable_column
+    column :user_id
+    column :card_template_id
+    column :number
+    column :created_at
+    column :updated_at
+
+    actions
+  end
 
   show do |ad|
     attributes_table do
