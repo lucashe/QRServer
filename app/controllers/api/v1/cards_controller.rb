@@ -25,7 +25,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:user_id,:card_template_id,:number,:code,:codeFormat)
+    params.require(:card).permit(:card_template_id)
   end
 
 end

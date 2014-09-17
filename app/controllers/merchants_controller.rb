@@ -1,2 +1,2 @@
-class MerchantsController < ApplicationController
+class MerchantsController < InheritedResources::Base
 end
